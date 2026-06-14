@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asteroid Raider — Support</title>
+    <meta
+      name="description"
+      content="Support and contact info for Asteroid Raider, including FAQ, bug reports, and data deletion requests."
+    />
+    <link rel="canonical" href="https://shrmbnt.github.io/Asteroid-Raider/support.html" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: #06080c;
+        color: #f4f7fb;
+        --cyan: #8cf4ff;
+        --mint: #55f5c3;
+        --gold: #f7d27a;
+        --pink: #ff8ea3;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; }
+
+      body {
+        background:
+          radial-gradient(circle at 18% 8%, rgba(52, 190, 198, 0.18), transparent 28rem),
+          radial-gradient(circle at 82% 18%, rgba(238, 98, 126, 0.14), transparent 30rem),
+          linear-gradient(180deg, #06080c 0%, #0d1119 100%);
+        line-height: 1.6;
+      }
+
+      a { color: var(--cyan); }
+
+      .container {
+        width: min(880px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      nav.top-nav { padding: 28px 0 0; }
+      nav.top-nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+        font-weight: 900;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #d8fbff, var(--cyan) 60%, #3aa6c8);
+        box-shadow: 0 0 12px rgba(140, 244, 255, 0.7);
+      }
+
+      nav.top-nav ul {
+        display: inline-flex;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav.top-nav a {
+        color: rgba(244, 247, 251, 0.72);
+        text-decoration: none;
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+
+      nav.top-nav a:hover { color: var(--cyan); }
+
+      main { padding: 56px 0 72px; }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: rgba(244, 247, 251, 0.6);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 6vw, 3.6rem);
+        line-height: 0.96;
+        letter-spacing: -0.01em;
+        font-weight: 900;
+      }
+
+      .lead {
+        max-width: 680px;
+        margin: 22px 0 0;
+        color: rgba(244, 247, 251, 0.78);
+        font-size: 1.04rem;
+      }
+
+      .contact-card {
+        margin: 36px 0 0;
+        padding: 22px 26px;
+        border-radius: 14px;
+        background: rgba(140, 244, 255, 0.06);
+        border: 1px solid rgba(140, 244, 255, 0.32);
+        display: grid;
+        gap: 6px;
+      }
+
+      .contact-card .label {
+        color: rgba(244, 247, 251, 0.6);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 800;
+      }
+
+      .contact-card a {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--cyan);
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      .contact-card small {
+        color: rgba(244, 247, 251, 0.66);
+        font-size: 0.88rem;
+      }
+
+      section {
+        margin-top: 44px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      h2 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+        font-weight: 800;
+      }
+
+      section > p {
+        margin: 0 0 16px;
+        color: rgba(244, 247, 251, 0.74);
+      }
+
+      details {
+        padding: 14px 16px;
+        margin-top: 8px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      details[open] {
+        background: rgba(140, 244, 255, 0.05);
+        border-color: rgba(140, 244, 255, 0.28);
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 800;
+        list-style: none;
+        position: relative;
+        padding-right: 28px;
+        outline: none;
+      }
+
+      summary::after {
+        content: "+";
+        position: absolute;
+        right: 4px;
+        top: 0;
+        font-size: 1.3rem;
+        color: var(--cyan);
+        transition: transform 160ms ease;
+      }
+
+      details[open] summary::after {
+        content: "−";
+      }
+
+      details p {
+        margin: 12px 0 0;
+        color: rgba(244, 247, 251, 0.78);
+      }
+
+      ul.bullets {
+        margin: 0;
+        padding-left: 1.2rem;
+        color: rgba(244, 247, 251, 0.78);
+      }
+
+      ul.bullets li + li { margin-top: 6px; }
+
+      .pill {
+        display: inline-block;
+        padding: 3px 10px;
+        margin-right: 6px;
+        border-radius: 999px;
+        background: rgba(140, 244, 255, 0.12);
+        border: 1px solid rgba(140, 244, 255, 0.32);
+        color: var(--cyan);
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .footer {
+        margin-top: 64px;
+        padding: 32px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(244, 247, 251, 0.56);
+        font-size: 0.92rem;
+      }
+
+      .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .footer-links {
+        display: inline-flex;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .footer-links a {
+        color: rgba(244, 247, 251, 0.72);
+        text-decoration: none;
+      }
+
+      .footer-links a:hover { color: var(--cyan); }
+
+      @media (max-width: 560px) {
+        nav.top-nav ul { gap: 14px; }
+        nav.top-nav .container { flex-wrap: wrap; }
+        main { padding-top: 36px; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="top-nav">
+      <div class="container">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Asteroid Raider</span>
+        </a>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <p class="eyebrow">Support</p>
+        <h1>Need a hand?</h1>
+        <p class="lead">
+          Asteroid Raider is built by a small team. If something is broken, missing,
+          or just confusing — write us. Real humans read every email and reply
+          within two business days, usually faster.
+        </p>
+
+        <div class="contact-card">
+          <span class="label">Email</span>
+          <a href="mailto:goldstardevapp@gmail.com?subject=Asteroid%20Raider%20support">goldstardevapp@gmail.com</a>
+          <small>Tell us what went wrong, what device and iOS version, and (if possible) which pilot name you used in-game. That's usually enough to track down anything.</small>
+        </div>
+
+        <section>
+          <h2>Frequently asked</h2>
+          <p>The most common things players ask after a few runs.</p>
+
+          <details>
+            <summary>I can't move past the station — what do I do?</summary>
+            <p>
+              Use the joystick at the bottom-left of the screen to fly your ship.
+              The button at the bottom-right is the plasma trail — hold it down to
+              emit a trail behind you, release it to glide silently. You don't
+              need plasma to move; you only need it to mine or to close loops.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I mine a crystal or a core?</summary>
+            <p>
+              Fly your ship around the crystal in a circle while holding the
+              plasma button. When your trail crosses itself and forms a closed
+              ring around the resource, the loop snaps shut and the resource
+              becomes loot. Loot then sticks to your trail and follows you home.
+            </p>
+          </details>
+
+          <details>
+            <summary>Why did I lose my loot when I died?</summary>
+            <p>
+              Asteroid Raider is a risk-vs-reward roguelite. When your ship is
+              destroyed mid-haul, half of the loot you were carrying is lost
+              forever and the other half is banked automatically. The longer you
+              stay out without docking, the more you are gambling — that's
+              intentional.
+            </p>
+          </details>
+
+          <details>
+            <summary>My pilot name doesn't show up on the leaderboard.</summary>
+            <p>
+              Make sure you are online when you finish a run — leaderboard
+              submissions need internet. The leaderboard refreshes when you open
+              the Top 100 modal. If your nickname appears in the local "rank #X"
+              row at the bottom but not in the public list above, that usually
+              means your score is outside the global Top 100 right now.
+            </p>
+          </details>
+
+          <details>
+            <summary>I bought an upgrade and the game didn't apply it.</summary>
+            <p>
+              Ship upgrades take effect at the start of your <em>next</em> run,
+              not the current one. End your current run and the upgraded stats
+              will be active when you launch again. If you still don't see the
+              difference, write us with a screenshot.
+            </p>
+          </details>
+
+          <details>
+            <summary>How do I change my pilot name?</summary>
+            <p>
+              Pilot names are locked after the first save to keep the leaderboard
+              honest. If you really need to change it — for example because of a
+              typo — email us with the current nickname and the new one and
+              we'll do it manually.
+            </p>
+          </details>
+
+          <details>
+            <summary>The game runs slow / drains my battery.</summary>
+            <p>
+              Close other apps in the background, especially anything streaming.
+              Asteroid Raider is built to run smoothly on iPhone 11 and newer in
+              landscape. If you're on an older device and runs feel choppy,
+              please email the device model and iOS version so we can profile
+              for it in a future patch.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does the game work offline?</summary>
+            <p>
+              Yes. You can play, mine, upgrade, and score completely offline. The
+              only feature that needs the internet is submitting and viewing the
+              global leaderboard.
+            </p>
+          </details>
+        </section>
+
+        <section>
+          <h2>Reporting a bug</h2>
+          <p>If something's clearly broken — softlock, crash, missing button — send a short report. The more of this we get, the faster we patch.</p>
+          <ul class="bullets">
+            <li><strong>What happened:</strong> one sentence is fine.</li>
+            <li><strong>What you were doing:</strong> in a run, in the shop, in the leaderboard, etc.</li>
+            <li><strong>Device:</strong> iPhone model and iOS version (Settings → General → About).</li>
+            <li><strong>App build:</strong> open the game and check the build number on the menu (bottom of the Guide).</li>
+            <li><strong>Screenshot or screen recording:</strong> if you can grab one, that's gold.</li>
+          </ul>
+          <p style="margin-top: 14px;">Send to <a href="mailto:goldstardevapp@gmail.com?subject=Asteroid%20Raider%20bug%20report">goldstardevapp@gmail.com</a>. Subject line "bug" gets routed to the top of the queue.</p>
+        </section>
+
+        <section>
+          <h2>Data deletion</h2>
+          <p>
+            Asteroid Raider stores almost nothing on you, but if you want your
+            leaderboard entry removed, write us with the pilot nickname displayed
+            in the game and we'll delete it. Details are in the
+            <a href="privacy.html">Privacy Policy</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>Press &amp; partnerships</h2>
+          <p>
+            <span class="pill">Press kit</span>
+            <span class="pill">Streamer keys</span>
+            <span class="pill">Localization</span>
+          </p>
+          <p>
+            Streamers and reviewers — email us with your channel link and we'll
+            send a media kit and a TestFlight link to the latest pre-release
+            build. Localization volunteers welcome too.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span>© 2026 GoldStarDev. All rights reserved.</span>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="mailto:goldstardevapp@gmail.com">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
