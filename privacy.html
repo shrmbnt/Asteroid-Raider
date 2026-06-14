@@ -36,14 +36,89 @@
         line-height: 1.6;
       }
 
-      main {
+      .container, main {
         width: min(860px, calc(100% - 32px));
         margin: 0 auto;
+      }
+
+      main {
         padding: 56px 0 72px;
       }
 
       a {
         color: #8cf4ff;
+      }
+
+      nav.top-nav { padding: 28px 0 0; }
+      nav.top-nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+        font-weight: 900;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .brand-mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #d8fbff, #8cf4ff 60%, #3aa6c8);
+        box-shadow: 0 0 12px rgba(140, 244, 255, 0.7);
+      }
+      nav.top-nav ul {
+        display: inline-flex;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav.top-nav a {
+        color: rgba(244, 247, 251, 0.72);
+        text-decoration: none;
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+      nav.top-nav a:hover { color: #8cf4ff; }
+
+      .footer {
+        margin-top: 32px;
+        padding: 32px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(244, 247, 251, 0.56);
+        font-size: 0.92rem;
+      }
+      .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer-links {
+        display: inline-flex;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .footer-links a {
+        color: rgba(244, 247, 251, 0.72);
+        text-decoration: none;
+      }
+      .footer-links a:hover { color: #8cf4ff; }
+
+      @media (max-width: 560px) {
+        nav.top-nav ul { gap: 14px; }
+        nav.top-nav .container { flex-wrap: wrap; }
       }
 
       .eyebrow {
@@ -115,6 +190,18 @@
     </style>
   </head>
   <body>
+    <nav class="top-nav">
+      <div class="container">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Asteroid Raider</span>
+        </a>
+        <ul>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <main>
       <p class="eyebrow">Privacy Policy</p>
       <h1>Asteroid Raider</h1>
@@ -185,5 +272,15 @@
 
       <p class="updated">Last updated: June 14, 2026</p>
     </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span>© 2026 GoldStarDev. All rights reserved.</span>
+        <ul class="footer-links">
+          <li><a href="support.html">Support</a></li>
+          <li><a href="mailto:goldstardevapp@gmail.com">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>
