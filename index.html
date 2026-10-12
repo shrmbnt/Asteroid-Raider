@@ -1,544 +1,99 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Asteroid Raider — Pilot your salvage ship, loop to mine, top the board</title>
-    <meta
-      name="description"
-      content="Asteroid Raider is an arcade roguelite for iPhone. Pilot a plasma-trailing ship through a neon asteroid belt, loop around drifting stars to mine them, dodge UFO raiders, and bank Starcoins to upgrade your fleet."
-    />
-    <meta property="og:title" content="Asteroid Raider" />
-    <meta
-      property="og:description"
-      content="Pilot a plasma-trailing ship through a neon asteroid belt. Loop to mine, dodge UFO raiders, climb the global leaderboard."
-    />
-    <meta property="og:type" content="website" />
-    <link rel="canonical" href="https://shrmbnt.github.io/Asteroid-Raider/" />
-    <style>
-      :root {
-        color-scheme: dark;
-        font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
-        background: #06080c;
-        color: #f4f7fb;
-        --cyan: #8cf4ff;
-        --mint: #55f5c3;
-        --gold: #f7d27a;
-        --pink: #ff8ea3;
-      }
-
-      * { box-sizing: border-box; }
-      html, body { margin: 0; min-height: 100%; }
-
-      body {
-        background:
-          radial-gradient(circle at 18% 8%, rgba(52, 190, 198, 0.18), transparent 28rem),
-          radial-gradient(circle at 82% 18%, rgba(238, 98, 126, 0.14), transparent 30rem),
-          linear-gradient(180deg, #06080c 0%, #0d1119 100%);
-        line-height: 1.6;
-      }
-
-      a { color: var(--cyan); }
-
-      .container {
-        width: min(1080px, calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      nav.top-nav { padding: 28px 0 0; }
-      nav.top-nav .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: inherit;
-        font-weight: 900;
-        font-size: 1.05rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-
-      .brand-mark {
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #d8fbff, var(--cyan) 60%, #3aa6c8);
-        box-shadow: 0 0 12px rgba(140, 244, 255, 0.7);
-      }
-
-      nav.top-nav ul {
-        display: inline-flex;
-        gap: 22px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      nav.top-nav a {
-        color: rgba(244, 247, 251, 0.72);
-        text-decoration: none;
-        font-size: 0.92rem;
-        font-weight: 700;
-      }
-
-      nav.top-nav a:hover { color: var(--cyan); }
-
-      .hero { padding: 84px 0 64px; }
-
-      .eyebrow {
-        margin: 0 0 14px;
-        color: rgba(244, 247, 251, 0.6);
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(2.6rem, 7vw, 5.2rem);
-        line-height: 0.94;
-        letter-spacing: -0.01em;
-        font-weight: 900;
-      }
-
-      .gradient {
-        background: linear-gradient(90deg, var(--cyan), var(--mint) 60%, var(--gold));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .tagline {
-        max-width: 640px;
-        margin: 24px 0 0;
-        font-size: clamp(1.05rem, 2vw, 1.25rem);
-        color: rgba(244, 247, 251, 0.78);
-      }
-
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin: 36px 0 0;
-      }
-
-      .cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 22px;
-        border-radius: 10px;
-        font-weight: 800;
-        font-size: 0.98rem;
-        text-decoration: none;
-        transition: transform 160ms ease;
-      }
-
-      .cta:hover { transform: translateY(-1px); }
-
-      .cta-primary {
-        background: var(--cyan);
-        color: #051018;
-      }
-
-      .cta-ghost {
-        background: rgba(255, 255, 255, 0.06);
-        color: #f4f7fb;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-      }
-
-      .stat-strip {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 8px;
-        margin: 56px 0 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .stat-strip li {
-        padding: 14px 16px;
-        border-radius: 10px;
-        background: rgba(140, 244, 255, 0.05);
-        border: 1px solid rgba(140, 244, 255, 0.18);
-      }
-
-      .stat-strip strong {
-        display: block;
-        font-size: 1.35rem;
-        font-weight: 900;
-        color: var(--cyan);
-      }
-
-      .stat-strip span {
-        display: block;
-        color: rgba(244, 247, 251, 0.62);
-        font-size: 0.76rem;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-top: 4px;
-      }
-
-      .section {
-        padding: 64px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .section h2 {
-        margin: 0 0 14px;
-        font-size: clamp(1.6rem, 3.6vw, 2.4rem);
-        font-weight: 900;
-        line-height: 1.1;
-      }
-
-      .section .lead {
-        max-width: 720px;
-        margin: 0 0 36px;
-        color: rgba(244, 247, 251, 0.74);
-        font-size: 1.04rem;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 14px;
-      }
-
-      .feature {
-        padding: 22px;
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .feature .icon {
-        display: inline-grid;
-        place-items: center;
-        width: 38px;
-        height: 38px;
-        border-radius: 999px;
-        background: rgba(140, 244, 255, 0.16);
-        color: var(--cyan);
-        font-weight: 900;
-        margin-bottom: 14px;
-      }
-
-      .feature h3 {
-        margin: 0 0 6px;
-        font-size: 1.04rem;
-        font-weight: 800;
-      }
-
-      .feature p {
-        margin: 0;
-        color: rgba(244, 247, 251, 0.72);
-        font-size: 0.92rem;
-      }
-
-      .loop-steps {
-        counter-reset: step;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 12px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .loop-steps li {
-        counter-increment: step;
-        padding: 20px 22px;
-        border-radius: 14px;
-        background: rgba(140, 244, 255, 0.04);
-        border: 1px solid rgba(140, 244, 255, 0.2);
-        position: relative;
-      }
-
-      .loop-steps li::before {
-        content: counter(step);
-        position: absolute;
-        top: 14px;
-        right: 18px;
-        font-size: 1.6rem;
-        font-weight: 900;
-        color: rgba(140, 244, 255, 0.4);
-      }
-
-      .loop-steps h3 {
-        margin: 0 0 6px;
-        font-size: 1rem;
-        font-weight: 800;
-      }
-
-      .loop-steps p {
-        margin: 0;
-        font-size: 0.88rem;
-        color: rgba(244, 247, 251, 0.7);
-      }
-
-      .reward-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 6px;
-      }
-
-      .reward-table th {
-        text-align: left;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: rgba(244, 247, 251, 0.52);
-        padding: 0 14px 6px;
-      }
-
-      .reward-table td {
-        padding: 14px 16px;
-        background: rgba(255, 255, 255, 0.035);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .reward-table tr td:first-child {
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px 0 0 8px;
-      }
-
-      .reward-table tr td:last-child {
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 0 8px 8px 0;
-        color: var(--gold);
-        font-weight: 800;
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-      }
-
-      .footer {
-        padding: 56px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        color: rgba(244, 247, 251, 0.56);
-        font-size: 0.92rem;
-      }
-
-      .footer .container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .footer-links {
-        display: inline-flex;
-        gap: 22px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .footer-links a {
-        color: rgba(244, 247, 251, 0.72);
-        text-decoration: none;
-      }
-
-      .footer-links a:hover { color: var(--cyan); }
-
-      .roadmap {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 8px;
-      }
-
-      .roadmap li {
-        padding: 14px 18px;
-        border-left: 3px solid rgba(140, 244, 255, 0.4);
-        background: rgba(255, 255, 255, 0.025);
-        border-radius: 0 8px 8px 0;
-        color: rgba(244, 247, 251, 0.78);
-      }
-
-      .roadmap strong {
-        display: block;
-        color: var(--cyan);
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 4px;
-      }
-
-      @media (max-width: 640px) {
-        .hero { padding: 56px 0 40px; }
-        .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        nav.top-nav ul { gap: 14px; }
-        nav.top-nav .container { flex-wrap: wrap; }
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="top-nav">
-      <div class="container">
-        <a class="brand" href="./">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span>Asteroid Raider</span>
-        </a>
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#loop">How to play</a></li>
-          <li><a href="support.html">Support</a></li>
-          <li><a href="privacy.html">Privacy</a></li>
-        </ul>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#060715" />
+  <title>CosmoBurst.io — Loop. Loot. Outrun.</title>
+  <meta name="description" content="CosmoBurst.io is a neon space action game. Draw plasma loops, bank your loot, survive the swarm, and climb the leaderboard on iOS and Android." />
+  <meta property="og:title" content="CosmoBurst.io — Loop. Loot. Outrun." />
+  <meta property="og:description" content="A neon space action game. Mine the belt, fight the swarm, and make every run count." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://shrmbnt.github.io/Asteroid-Raider/assets/cosmoburst-icon.png" />
+  <link rel="canonical" href="https://shrmbnt.github.io/Asteroid-Raider/" />
+  <link rel="icon" type="image/png" href="assets/cosmoburst-icon.png" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="./" aria-label="CosmoBurst.io home"><img src="assets/cosmoburst-icon.png" alt="" /><span>CosmoBurst<span>.io</span></span></a>
+      <div class="nav-links">
+        <a href="#game" aria-current="page">The game</a>
+        <a href="#modes">Modes</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="nav-cta" href="#download">Play now ↗</a>
       </div>
     </nav>
+  </header>
 
-    <header class="hero">
-      <div class="container">
-        <p class="eyebrow">Arcade roguelite · iPhone</p>
-        <h1>
-          Loop. Mine. Survive.<br />
-          <span class="gradient">Top the global board.</span>
-        </h1>
-        <p class="tagline">
-          Asteroid Raider drops you into a neon asteroid belt with a small salvage
-          ship and one tool — a glowing plasma trail. Draw a loop around drifting
-          stars to mine them, dodge UFO raiders, return to your station to bank
-          Starcoins, and upgrade your fleet between runs.
-        </p>
-        <div class="cta-row">
-          <a class="cta cta-primary" href="#features">What's inside</a>
-          <a class="cta cta-ghost" href="support.html">Need help?</a>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Neon space action · iOS + Android</p>
+          <h1 id="hero-title" class="display"><span class="line">Loop.</span><span class="line accent">Loot.</span><span class="line accent-pink">Outrun.</span></h1>
+          <p class="hero-lead">Draw a plasma trail through dangerous sectors. Close the loop, claim the loot, and make it back before the belt — or the swarm — catches you.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="https://apps.apple.com/us/app/asteroid-raider-mine-pilot/id6778913673">Download for iPhone ↗</a>
+            <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.aftertrace.game">Get it on Google Play ↗</a>
+          </div>
+          <p class="hero-note">The store listing may still show the former Asteroid Raider name during the rename rollout.</p>
         </div>
-        <ul class="stat-strip">
-          <li><strong>iPhone</strong><span>Landscape, one-handed</span></li>
-          <li><strong>~3 min</strong><span>Average run length</span></li>
-          <li><strong>Top 100</strong><span>Global leaderboard</span></li>
-          <li><strong>$0</strong><span>No ads, no IAP</span></li>
-        </ul>
-      </div>
-    </header>
-
-    <section class="section" id="features">
-      <div class="container">
-        <h2>Why Asteroid Raider</h2>
-        <p class="lead">
-          A short-session arcade game that doesn't waste your time. Every run is
-          its own story: how deep do you push, how much loot do you risk dragging
-          home, how long do you survive before the belt eats you alive.
-        </p>
-        <div class="feature-grid">
-          <div class="feature">
-            <div class="icon">★</div>
-            <h3>Plasma is friend and foe</h3>
-            <p>Your trail mines resources and traps enemies — but it crystallizes into a lethal wall a few seconds later. Plan loops with an exit in mind.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">$</div>
-            <h3>Risk vs reward</h3>
-            <p>Die mid-haul and you lose 50% of carried loot. The other 50% banks. The longer you stay out, the more loot — and the more enemies.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">↑</div>
-            <h3>Ships and upgrades</h3>
-            <p>Two ships at launch (Seeker, Stormbird) with Tank, Engine, and Hull upgrades that persist between runs. Permadeath, but progress is permanent.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">✕</div>
-            <h3>Smart enemies</h3>
-            <p>Kamikaze drones and UFO raiders that fire homing lasers. UFOs take two captures to destroy. Use your trail as a weapon, not just a net.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">●</div>
-            <h3>Global leaderboard</h3>
-            <p>Climb the world Top 100 with any pilot name. No account required, no email, no sign-in. Just a nickname and a score.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">!</div>
-            <h3>One-handed friendly</h3>
-            <p>Built for the toilet, the train, the couch. Left thumb steers, right thumb pulses plasma. That's the whole control scheme.</p>
-          </div>
+        <div class="hero-visual" aria-label="CosmoBurst.io app artwork">
+          <span class="visual-tag top">Pilot signal // live</span>
+          <img class="hero-art" src="assets/cosmoburst-icon.png" alt="CosmoBurst.io pilot ship clashes with an alien craft" width="1024" height="1024" />
+          <span class="visual-tag bottom">Enter the burst zone</span>
         </div>
       </div>
     </section>
 
-    <section class="section" id="loop">
-      <div class="container">
-        <h2>The Loop</h2>
-        <p class="lead">One full cycle in 30 seconds — and the urge to chain another one.</p>
-        <ol class="loop-steps">
-          <li>
-            <h3>Launch</h3>
-            <p>Take off from your station with a full plasma tank.</p>
-          </li>
-          <li>
-            <h3>Hold to emit plasma</h3>
-            <p>The glowing trail follows you. Drains from the tank while held.</p>
-          </li>
-          <li>
-            <h3>Close a loop</h3>
-            <p>Encircle a drifting crystal, a rare core, or an enemy.</p>
-          </li>
-          <li>
-            <h3>Bank at the station</h3>
-            <p>Loot beads follow you home. Convert them into Starcoins.</p>
-          </li>
-        </ol>
+    <div class="signal" aria-label="Game highlights"><div class="wrap signal-inner"><span>Plasma loops</span><span>Deep space loot</span><span>Boss battles</span><span>Global ranks</span></div></div>
+
+    <section class="section" id="game" aria-labelledby="game-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">One ship. Endless close calls.</p>
+          <h2 id="game-title" class="display">Make the <span class="accent">impossible</span> run.</h2>
+          <p>CosmoBurst.io turns every flight into a choice: push farther for a bigger score, or get home with the loot you already have.</p>
+        </div>
+        <div class="card-grid">
+          <article class="feature-card" style="--glow:var(--cyan)"><span class="card-index">01 /</span><h3>Draw the danger</h3><p>Hold the plasma button and fly a closed loop around crystals, asteroids, or enemies. Your trail is a tool while it glows and a wall when it hardens.</p></article>
+          <article class="feature-card" style="--glow:var(--pink)"><span class="card-index">02 /</span><h3>Bank the haul</h3><p>Carry what you capture back to the station for Starcoins. Upgrade your ship and decide how much more risk the next run can take.</p></article>
+          <article class="feature-card" style="--glow:var(--gold)"><span class="card-index">03 /</span><h3>Climb the ranks</h3><p>Chain clean captures, survive longer, and chase a place on the global leaderboard. Every sector gives you a new route to master.</p></article>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Rewards</h2>
-        <p class="lead">Starcoins land on your wallet the moment you bank loot or destroy an enemy. Score still rules the leaderboard.</p>
-        <table class="reward-table">
-          <thead>
-            <tr>
-              <th>Action</th>
-              <th>Reward</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Crystal delivered to station</td><td>+$10</td></tr>
-            <tr><td>Plasma Core delivered to station</td><td>+$25</td></tr>
-            <tr><td>Drone destroyed by loop or wall</td><td>+$1</td></tr>
-            <tr><td>UFO Raider destroyed (2 captures)</td><td>+$3</td></tr>
-            <tr><td>Every 1,000 score</td><td>+$5</td></tr>
-          </tbody>
-        </table>
+    <section class="section modes" id="modes" aria-labelledby="modes-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="eyebrow">Choose your pressure</p><h2 id="modes-title" class="display">Two ways to <span class="accent-pink">break through.</span></h2><p>Explore the sectors for loot or take on combat chapters as the swarm grows stronger.</p></div>
+        <div class="mode-grid">
+          <article class="mode-card" style="--mode-glow:rgba(55,214,226,.35);--mode-text:var(--cyan)">
+            <p class="label">01 / Salvage sectors</p><h3>Chase the next haul.</h3><p>Mine the Asteroid Belt, navigate the Lunar Caves, outrun the Inferno Core, and hold your ground in Void Siege.</p>
+          </article>
+          <article class="mode-card" style="--mode-glow:rgba(231,68,189,.36);--mode-text:var(--pink)">
+            <p class="label">02 / Battle chapters</p><h3>Outlast the swarm.</h3><p>Fly, collect upgrades, and fight through escalating stages. Your weapons fire automatically — your job is to stay alive.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Roadmap</h2>
-        <p class="lead">Asteroid Raider v1.0 ships with the Asteroid Belt and two ships. Updates already on deck:</p>
-        <ul class="roadmap">
-          <li><strong>v1.1 · Plasma Nebula</strong>Second map with denser cores and faster UFO patrols.</li>
-          <li><strong>v1.2 · Heavy &amp; Glass</strong>Two new ships — a tank-class hauler and a glass-cannon racer.</li>
-          <li><strong>v1.3 · Daily Run</strong>Fixed-seed daily challenge with its own leaderboard.</li>
-          <li><strong>v1.4 · iCloud Sync</strong>Wallet and ship progress follow you between devices.</li>
-        </ul>
+    <section class="section" aria-labelledby="steps-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="eyebrow">Launch sequence</p><h2 id="steps-title" class="display">Easy to start.<br /><span class="accent">Hard to leave.</span></h2></div>
+        <div class="steps">
+          <div class="step"><b>STEP 01</b><h3>Pick your ship</h3><p>Choose your sector, tune your upgrades, and launch with a plan.</p></div>
+          <div class="step"><b>STEP 02</b><h3>Close the loop</h3><p>Draw plasma around a target, then escape before your trail becomes a hazard.</p></div>
+          <div class="step"><b>STEP 03</b><h3>Come back stronger</h3><p>Bank your loot, improve your gear, and push for the next score.</p></div>
+        </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="container">
-        <span>© 2026 GoldStarDev. All rights reserved.</span>
-        <ul class="footer-links">
-          <li><a href="support.html">Support</a></li>
-          <li><a href="privacy.html">Privacy</a></li>
-          <li><a href="mailto:goldstardevapp@gmail.com">Contact</a></li>
-        </ul>
-      </div>
-    </footer>
-  </body>
+    <section class="download" id="download" aria-labelledby="download-title"><div class="wrap download-inner"><div><p class="eyebrow">Your next run starts here</p><h2 id="download-title" class="display">Ready to <span class="accent">burst?</span></h2><p>CosmoBurst.io is available for iPhone and Android. Download, pick a ship, and dive in.</p></div><div class="button-row"><a class="button button-primary" href="https://apps.apple.com/us/app/asteroid-raider-mine-pilot/id6778913673">App Store ↗</a><a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.aftertrace.game">Google Play ↗</a></div></div></section>
+  </main>
+
+  <footer class="footer"><div class="wrap footer-inner"><div><a class="brand" href="./"><img src="assets/cosmoburst-icon.png" alt="" /><span>CosmoBurst<span>.io</span></span></a><p>CosmoBurst.io is published by GSTD. Questions about the game or your data? We are here to help.</p><p>© 2026 GSTD. All rights reserved.</p></div><div class="footer-links"><a href="support.html">Support</a><a href="privacy.html">Privacy policy</a><a href="mailto:goldstardevapp@gmail.com">Contact</a></div></div></footer>
+</body>
 </html>
